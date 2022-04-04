@@ -1,0 +1,12 @@
+footer {
+    padding-top: 10px;
+  }
+  .copyright {
+    padding: 15px 0;
+    color: #fff;
+    font-size: 15px;
+  }
+  
+  footer .copyright span {
+    color: #fff;
+  }
