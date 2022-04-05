@@ -1,0 +1,72 @@
+.ephatha-container{
+    min-height: 100vh;
+}
+.ephathac{
+    margin-top: 5rem;
+}
+.epht-col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.epht-card {
+    width: 800px;
+    height: auto;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    overflow: hidden;
+    background: #fafbff;
+}
+.epht-pdf{
+    margin-top: 3rem;
+    width: 400px;
+}
+button {
+    outline: 0;
+    border: 0;
+    -webkit-appearence: none;
+    background: #5256ad;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    font-size: 0.8rem;
+    padding: 8px 13px;
+    margin-top: 1rem;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.epht-form {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border:  2px dashed #d5d5e1;
+    color: #c8c9dd;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    background: #dfe3f259;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    margin-top: 20px;
+}
+
+form .epht-select {
+    color: #5256ad;
+    margin-left: 7px;
+    cursor: pointer;
+}
+
+

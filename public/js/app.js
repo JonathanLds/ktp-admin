@@ -2167,11 +2167,11 @@ var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.j
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./photoupload */ "./resources/js/photoupload.js");
+
 window.$ = window.jQuery = __webpack_require__(/*! jQuery */ "./node_modules/jQuery/dist/jquery.js");
 
 __webpack_require__(/*! ../../node_modules/bootstrap/dist/js/bootstrap.bundle */ "./node_modules/bootstrap/dist/js/bootstrap.bundle.js");
-
-__webpack_require__(/*! ./nav */ "./resources/js/nav.js");
 
 /***/ }),
 
@@ -2206,70 +2206,95 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/nav.js":
-/*!*****************************!*\
-  !*** ./resources/js/nav.js ***!
-  \*****************************/
+/***/ "./resources/js/photoupload.js":
+/*!*************************************!*\
+  !*** ./resources/js/photoupload.js ***!
+  \*************************************/
 /***/ (() => {
 
-(function ($) {
-  "use strict"; // Start of use strict
-  // Toggle the side navigation
+var files = [],
+    // will be store images
+button = document.querySelector('.up-button'),
+    // upload button
+form = document.querySelector('.photo-form'),
+    // form ( drag area )
+container = document.querySelector('.blank-container'),
+    // container in which image will be insert
+text = document.querySelector('.inner'),
+    // inner text of form
+browse = document.querySelector('.select'),
+    // text option fto run input
+input = document.querySelector('.photo-input'); // file input
 
-  $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {
-    $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled");
+browse.addEventListener('click', function () {
+  return input.click();
+}); // input change event
 
-    if ($(".sidebar").hasClass("toggled")) {
-      $('.sidebar .collapse').collapse('hide');
-    }
+input.addEventListener('change', function () {
+  var file = input.files;
 
-    ;
-  }); // Close any open menu accordions when window is resized below 768px
+  var _loop = function _loop(i) {
+    if (files.every(function (e) {
+      return e.name !== file[i].name;
+    })) files.push(file[i]);
+  };
 
-  $(window).resize(function () {
-    if ($(window).width() < 768) {
-      $('.sidebar .collapse').collapse('hide');
-    }
+  for (var i = 0; i < file.length; i++) {
+    _loop(i);
+  }
 
-    ; // Toggle the side navigation when window is resized below 480px
+  form.reset();
+  showImages();
+});
 
-    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
-      $("body").addClass("sidebar-toggled");
-      $(".sidebar").addClass("toggled");
-      $('.sidebar .collapse').collapse('hide');
-    }
-
-    ;
-  }); // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
-
-  $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (e) {
-    if ($(window).width() > 768) {
-      var e0 = e.originalEvent,
-          delta = e0.wheelDelta || -e0.detail;
-      this.scrollTop += (delta < 0 ? 1 : -1) * 30;
-      e.preventDefault();
-    }
-  }); // Scroll to top button appear
-
-  $(document).on('scroll', function () {
-    var scrollDistance = $(this).scrollTop();
-
-    if (scrollDistance > 100) {
-      $('.scroll-to-top').fadeIn();
-    } else {
-      $('.scroll-to-top').fadeOut();
-    }
-  }); // Smooth scrolling using jQuery easing
-
-  $(document).on('click', 'a.scroll-to-top', function (e) {
-    var $anchor = $(this);
-    $('html, body').stop().animate({
-      scrollTop: $($anchor.attr('href')).offset().top
-    }, 1000, 'easeInOutExpo');
-    e.preventDefault();
+var showImages = function showImages() {
+  var images = '';
+  files.forEach(function (e, i) {
+    images += "<div class=\"image\">\n    \t\t\t<img src=\"".concat(URL.createObjectURL(e), "\" alt=\"image\">\n    \t\t\t<span onclick=\"delImage(").concat(i, ")\">&times;</span>\n    \t\t</div>");
   });
-})(jQuery); // End of use strict
+  container.innerHTML = images;
+};
+
+var delImage = function delImage(index) {
+  files.splice(index, 1);
+  showImages();
+}; // drag and drop 
+
+
+form.addEventListener('dragover', function (e) {
+  e.preventDefault();
+  form.classList.add('dragover');
+  text.innerHTML = 'Drop images here';
+});
+form.addEventListener('dragleave', function (e) {
+  e.preventDefault();
+  form.classList.remove('dragover');
+  text.innerHTML = 'Drag & drop image here or <span class="select">Browse</span>';
+});
+form.addEventListener('drop', function (e) {
+  e.preventDefault();
+  form.classList.remove('dragover');
+  text.innerHTML = 'Drag & drop image here or <span class="select">Browse</span>';
+  var file = e.dataTransfer.files;
+
+  var _loop2 = function _loop2(i) {
+    if (files.every(function (e) {
+      return e.name !== file[i].name;
+    })) files.push(file[i]);
+  };
+
+  for (var i = 0; i < file.length; i++) {
+    _loop2(i);
+  }
+
+  showImages();
+});
+button.addEventListener('click', function () {
+  var form = new FormData();
+  files.forEach(function (e, i) {
+    return form.append("file[".concat(i, "]"), e);
+  });
+});
 
 /***/ }),
 

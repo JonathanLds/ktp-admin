@@ -1,65 +1,44 @@
 @extends('master')
 @section("content")
-<!-- Page Wrapper -->
-<div id="wrapper">
-<!-- Sidebar -->
-<ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-        <i class="fa-solid fa-image"></i>
-            <span>Gallery</span></a>
-    </li>
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-        <i class="fa-solid fa-quote-left"></i>
-            <span>Article</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-        <i class="fa-solid fa-newspaper"></i>
-            <span>Ephatha</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-        <i class="fa-solid fa-radio"></i>
-            <span>News</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-        <i class="fa-solid fa-user"></i>
-            <span>Office bearers</span></a>
-    </li>
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-        <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Log out</span></a>
-    </li>
-</ul>
-<!-- End of Sidebar -->
-
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
-    <!-- Main Content -->
-    <div id="content">
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-
+<div class="container photo-container">
+    <div class="row">
+        <div class="col-12 createalbum-col">
+        <h4 class="albumc text-center">Create album</h4>
+            <div class="container photoup-header">
+                <form action="" class="create-album">
+                    <div class="album-create mb-2">
+                        <label for="AlbumName" class="form-label">Album name</label>
+                        <input type="text" class="form-control" id="AlbumName" placeholder="album name">
+                    </div>
+                    <div class="album-create mb-2">
+                        <label for="AlbumDate" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="AlbumDate" placeholder="">
+                    </div>
+                    <button type="submit" class="mt-1">Create</button>
+                </form>
+            </div>
         </div>
-        <!-- /.container-fluid -->
+       <h4 class="text-center mt-5">Upload Photo</h4>
+        <div class="col-12 upload-col pt-3">
+            <div class="card photo-card mb-5">
+                <form action="/upload" method="post" class="photo-form">
+                    <div class="drag-area mt-5">
+                        <span class="inner">Drag & drop image here or <span class="select">Browse</span></span>
+                        <input name="file" type="file" class="photo-input" multiple />
+                    </div>
+                    <div class="album-select">
+                        <label for="AlbumSelect" class="form-label s-album">Select album</label>
+                        <select class="form-select" id="AlbumSelect">
+                            <option value="1">One</option>
+                            <option value="1">One</option>
+                            <option value="1">One</option>
+                        </select>
+                    </div>
+                    <button type="button" class="up-button mb-3">Upload</button>
+                </form>
+                <div class="container blank-container"></div>
+            </div>
+        </div>
     </div>
-    <!-- End of Main Content -->
-</div>
-<!-- End of Content Wrapper -->
-</div>
-<!-- End of Page Wrapper -->
 </div>
 @endsection

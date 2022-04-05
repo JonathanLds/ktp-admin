@@ -1,0 +1,17 @@
+.news-main{
+    min-height: 100vh;
+}
+.newsc{
+    margin-top: 5rem;
+}
+.news-cont{
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.news-form{
+    width: 700px;
+    height: auto;
+}

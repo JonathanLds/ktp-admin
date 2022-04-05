@@ -1,5 +1,5 @@
 .navbar{
-    width:auto;
+    margin-bottom: 5rem;
 }
 .nav-link{
     color: white;
@@ -20,6 +20,9 @@ img{
     height: auto;
     width: 60px;
     margin-right: 1rem;
+}
+.navbar-nav{
+    margin-left: 4rem;
 }
 @media (max-width:576px){
     .navbar-nav{
